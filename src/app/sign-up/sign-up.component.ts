@@ -1,5 +1,5 @@
-import { User } from './../service/user';
 import { Component } from '@angular/core';
+import { User } from './../service/user';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,9 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
-  username: string;
-  emaul: string;
-  password: string;
+
+  user = new User();
 
   constructor() { }
 
