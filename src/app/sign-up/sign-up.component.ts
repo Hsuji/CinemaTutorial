@@ -12,6 +12,8 @@ export class SignUpComponent {
 
   constructor() { }
 
-  onSubmit() {
+  onSubmit(userForm) {
+    console.log('userInfo', this.user);
+    console.log('userForm', userForm);
   }
 }
