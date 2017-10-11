@@ -1,3 +1,7 @@
+/**
+ * 로그인 화면
+ * 화면ID : signIn
+ */
 import { Component, OnInit } from '@angular/core';
 
 @Component({
