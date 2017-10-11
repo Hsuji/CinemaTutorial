@@ -1,33 +1,33 @@
-<form class="form-signup" (ngSubmit)="onSubmit(username, email, password, passwordChk)">
+<form class="form-signup" (ngSubmit)="onSubmit()" [formGroup]="userForm">
   <h1>회원가입</h1>
   <br>
   <div class="form-group">
     <label for="username">사용자 이름</label>
-    <input type="text" class="form-control" id="username" name="username" 
-           [(ngModel)]="user.username" #username="ngModel" required
-           placeholder="사용자의 이름을 입력하세요.">
-    <div [hidden]="username.valid || username.untouched" class="alert alert-danger">필수 작성 항목입니다.</div>
+    <input type="text" class="form-control" formControlName="username" [(ngModel)]="user.username" placeholder="사용자의 이름을 입력하세요.">
+    <div *ngIf="!userForm.get('username').untouched && (userForm.get('username').status == 'INVALID')" class="alert alert-danger">
+      필수 작성 항목입니다.
+    </div>
   </div>
   <div class="form-group">
     <label for="email">이메일</label>
-    <input type="email" class="form-control" id="email" name="email" 
-           [(ngModel)]="user.email" #email="ngModel" required
-           placeholder="이메일을 입력하세요.">
-    <div [hidden]="email.valid || email.untouched" class="alert alert-danger">필수 작성 항목입니다.</div>
+    <input type="email" class="form-control" formControlName="email" [(ngModel)]="user.email" placeholder="이메일을 입력하세요.">
+    <div *ngIf="!userForm.get('email').untouched && (userForm.get('email').status == 'INVALID')" class="alert alert-danger">
+      필수 작성 항목 및 이메일 형식입니다.
+    </div>
   </div>
   <div class="form-group">
     <label for="password">비밀번호</label>
-    <input type="password" class="form-control" id="password" name="password" 
-           [(ngModel)]="user.password" #password="ngModel" required minlength="8" maxlength="12"
-           placeholder="8~10이상 입력하세요.">
-    <div [hidden]="password.valid || password.untouched" class="alert alert-danger">필수 작성 항목 및 길이는 8~12자 입니다.</div>
+    <input type="password" class="form-control" formControlName="password" [(ngModel)]="user.password" placeholder="8~10이상 입력하세요.">
+    <div *ngIf="!userForm.get('password').untouched && (userForm.get('password').status == 'INVALID')" class="alert alert-danger">
+        필수 작성 항목 및 길이는 8~12자 입니다.
+    </div>
   </div>
   <div class="form-group">
     <label for="passwordChk">비밀번호 확인</label>
-    <input type="password" class="form-control" id="passwordChk" name="passwordChk"
-    [(ngModel)]="user.passwordChk" #passwordChk="ngModel" required minlength="8" maxlength="12"
-    placeholder="동일한 비밀번호를 입력하세요.">
-    <div *ngIf="passwordChk.touched && (passwordChk.value != password.value)" class="alert alert-danger">비밀번호 틀림</div>
+    <input type="password" class="form-control" formControlName="passwordChk" placeholder="동일한 비밀번호를 입력하세요.">
+    <div *ngIf="!userForm.get('passwordChk').untouched && (userForm.get('passwordChk').value != userForm.get('password').value)" class="alert alert-danger">
+        비밀번호 틀림
+    </div>
   </div>
   <button type="submit" class="btn btn-primary btn-block">회원가입</button>
 </form>
