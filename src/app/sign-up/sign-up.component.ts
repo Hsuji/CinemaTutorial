@@ -44,8 +44,6 @@ export class SignUpComponent {
   }
 
   onSubmit() {
-    console.log('userInfo', this.user);
-    console.log('userForm', this.userForm);
     if (this.userForm.status === 'VALID'
       && this.userForm.get('password').value === this.userForm.get('passwordChk').value) {
         //db에 user insert
